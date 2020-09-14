@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agile Project Manager</title>
+    <link rel='stylesheet' th:href=@{main.css} type='text/css'>
+</head>
+<body>
+<header>
+    <div class="logo">Agile Project Manager</div>
+    <div class="signUp">
+        <button type="button" id="signup" class="signUpBtn">Sign Up</button>
+    </div>
+    <div class="container">
+        <form action="#" th:action="@{/projects}" th:object="${user}" method="post" class="formulaire">
+            <div class="userMail">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" />
+            </div>
+            <div class="password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
+            </div>
+            <input type="submit" value="Login" class="btn" />
+        </form>
+    </div>
+</header>
+<div class="modal">
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+        <div class="inputs">
+            <input type="text" class="input input_1"  name="firstname" placeholder="First name">
+            <input type="text" class="input input_1"  name="lastname" placeholder="Last name">
+            <br>
+            <input type="text" class="input input_2" name="email" placeholder="Email">
+            <br>
+            <input type="password" class="input input_2" name="password" placeholder="New password">
+        </div>
+        <div style="margin-top: 20px;">
+            <input id="female" name="gender" type="radio" value="Female">
+            <label class="female" for="female">Female</label>
+            <input id="male" name="gender" type="radio" value="Male">
+            <label class="male" for="male">Male</label>
+        </div>
+        <div>
+            <input type="submit" class="signUpBtn" name="submit" value="Register">
+        </div>
+        <span class="modal-close">X</span>
+    </form>
+</div>
+<div class="background">
+    <div class="infodiv" th:if="${msg}">
+        <div class="info" th:text="${msg}" ></div>
+    </div>
+    <img th:src=@{Agile-project.jpg} alt="Background Image">
+</div>
+<script th:src="@{main.js}"></script>
+</body>
+</html>

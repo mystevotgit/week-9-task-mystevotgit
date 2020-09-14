@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<hea<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teams</title>
+    <link rel='stylesheet' th:href=@{main.css} type='text/css'>
+</head>
+<body>
+<header>
+    <div class="logo">Agile Project Manager</div>
+    <div class="container">
+        <h3 th:text="${user.firstname}"></h3>
+        <br>
+        <a class='btn' th:href="@{/logout}">Log Out</a>
+    </div>
+</header>
+<div class="side-bar">
+    <nav class="navigation">
+        <ul>
+            <li>
+                <a th:href="@{/projects}">Projects</a>
+                <a th:href="@{/teams}">Teams</a>
+                <a th:href="@{/chart}">Burn Down Chart</a>
+                <a th:href="@{/history}">History</a>
+                <a th:href="@{/about}">About</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="main-content">
+    <section id="about">
+        <h1>About</h1>
+    </section>
+    <section id="products">
+        <h1>Products</h1>
+    </section>
+    <section id="services">
+        <h1>Services</h1>
+    </section>
+    <section id="contact">
+        <h1>Contact</h1>
+    </section>
+    <section id="gallery">
+        <h1>Gallery</h1>
+    </section>
+</div>
+</body>
+</html>
