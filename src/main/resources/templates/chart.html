@@ -21,15 +21,43 @@
             <li>
                 <a th:href="@{/projects}">Projects</a>
                 <a th:href="@{/teams}">Teams</a>
-                <a th:href="@{/chart}">Burn Down Chart</a>
                 <a th:href="@{/history}">History</a>
                 <a th:href="@{/about}">About</a>
             </li>
         </ul>
     </nav>
 </div>
-<div class="main-content">
-
+<div class="chartbody">
+    <br>
+    <h2 th:text="${project.name}"></h2>
+    <h3>Sprint Chart</h3>
+    <div class="signUp">
+        <button type="button" id="signup" class="signUpBtn">Create User Story</button>
+    </div>
+    <div class="modal">
+        <form action="#" th:action="@{/createStory}" th:object="${issue}" method="post">
+            <div class="inputs">
+                <input type="text" class="input input_1"  name="firstname" placeholder="First name">
+                <input type="text" class="input input_1"  name="lastname" placeholder="Last name">
+                <br>
+                <input type="text" class="input input_2" name="email" placeholder="Email">
+                <br>
+                <input type="password" class="input input_2" name="password" placeholder="New password">
+            </div>
+            <div>
+                <input type="submit" class="signUpBtn" name="submit" value="Register">
+            </div>
+            <span class="modal-close">X</span>
+        </form>
+    </div>
+    <br>
+    <div class="chart-content">
+        <div class="column">Backlog</div>
+        <div class="column">In Progress</div>
+        <div class="column">Review</div>
+        <div class="column">Done</div>
+    </div>
 </div>
+<script th:src="@{main.js}"></script>
 </body>
 </html>

@@ -21,7 +21,6 @@
             <li>
                 <a th:href="@{/projects}">Projects</a>
                 <a th:href="@{/teams}">Teams</a>
-                <a th:href="@{/chart}">Burn Down Chart</a>
                 <a th:href="@{/history}">History</a>
                 <a th:href="@{/about}">About</a>
             </li>
@@ -29,21 +28,51 @@
     </nav>
 </div>
 <div class="main-content">
-    <section id="about">
-        <h1>About</h1>
-    </section>
-    <section id="products">
-        <h1>Products</h1>
-    </section>
-    <section id="services">
-        <h1>Services</h1>
-    </section>
-    <section id="contact">
-        <h1>Contact</h1>
-    </section>
-    <section id="gallery">
-        <h1>Gallery</h1>
+    <section id="projectsection">
+        <h1>Projects</h1>
+        <div class="signUp">
+            <button type="button" id="signup" class="signUpBtn">Create Project</button>
+        </div>
+        <div class="modal">
+            <form action="#" th:action="@{/createproject}" th:object="${project}" method="post">
+                <div class="inputs">
+                    <input type="text" class="input input_2"  name="projectname" placeholder="Project Name">
+                </div>
+                <div>
+                    <input type="submit" class="signUpBtn" name="submit" value="Create">
+                </div>
+                <span class="modal-close">X</span>
+            </form>
+        </div>
+        <div class="projectbody">
+            <table>
+                <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Project Name</th>
+                    <th>Project Lead</th>
+                    <th>Date Created</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody th:each="project: ${leadprojects}">
+                <tr>
+                    <td data-column="SN"></td>
+                    <td data-column="Project Name" th:text="${project.name}"></td>
+                    <td data-column="Project Lead" th:text="${user.firstname}"></td>
+                    <td data-column="Date Created" th:text="${project.date}"></td>
+                    <td data-column="Action">
+                        <form action="#" th:action="@{/chart}">
+                            <input type="text" hidden name="projectid" th:value="${project.id}">
+                            <input type="submit" class="signUpBtn" name="submit" value="Open" >
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </div>
+<script th:src="@{main.js}"></script>
 </body>
 </html>

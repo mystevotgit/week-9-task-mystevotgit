@@ -1,13 +1,11 @@
 package com.project.projectmanager.repository;
 
-import com.project.projectmanager.models.User;
+import com.project.projectmanager.models.TeamProject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findByEmail(String email);
+public interface TeamProjectRepository extends JpaRepository<TeamProject, Long> {
+    TeamProject findByteamId(long teamId);
 }

@@ -12,16 +12,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Team {
+public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
+    private long projectId;
+    private long title;
+    private String description;
+    private String details;
+    private Integer priority;
+    private String status;
     private String date;
 
-//    @OneToMany
-//    private List<TeamMember> members = new ArrayList<>();
-
-    @OneToOne
-    private TeamProject projects = new TeamProject();
+    @OneToMany
+    private List<Task> tasks = new ArrayList<>();
 }
