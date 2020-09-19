@@ -62,7 +62,7 @@
                     <td data-column="Project Lead" th:text="${user.firstname}"></td>
                     <td data-column="Date Created" th:text="${project.date}"></td>
                     <td data-column="Action">
-                        <form action="#" th:action="@{/chart}">
+                        <form action="#" th:action="@{/chart}" method="post">
                             <input type="text" hidden name="projectid" th:value="${project.id}">
                             <input type="submit" class="signUpBtn" name="submit" value="Open" >
                         </form>

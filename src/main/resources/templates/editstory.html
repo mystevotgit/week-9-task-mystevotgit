@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User Story</title>
+    <link rel='stylesheet' th:href=@{main.css} type='text/css'>
+</head>
+<body>
+<header>
+    <div class="logo">Agile Project Manager</div>
+    <div class="container">
+        <h3 th:text="${user.firstname}"></h3>
+        <br>
+        <a class='btn' th:href="@{/logout}">Log Out</a>
+    </div>
+</header>
+<div class="side-bar">
+    <nav class="navigation">
+        <ul>
+            <li>
+                <a th:href="@{/projects}">Projects</a>
+                <a th:href="@{/teams}">Teams</a>
+                <a th:href="@{/history}">History</a>
+                <a th:href="@{/about}">About</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="chartbody">
+    <br>
+    <!--    <h2 th:text="${project.name}"></h2>-->
+    <h3>Sprint Chart: Edit User Story</h3>
+    <div class="signUp">
+        <button type="button" id="signup" class="signUpBtn">Create User Story</button>
+    </div>
+    <div class="modal chartmodal">
+        <form action="#" th:action="@{/createStory}" th:object="${issue}" method="post">
+            <div class="inputs">
+                <input type="text" class="input input_2"  name="priority" placeholder="Priority">
+                <br>
+                <textarea type="text" class="story-description" name="description" placeholder="Description"></textarea>
+                <br>
+                <textarea type="text" class="story-details" name="details" placeholder="Details"></textarea>
+            </div>
+            <div>
+                <input type="submit" class="signUpBtn" name="submit" value="Create">
+            </div>
+            <span class="modal-close">X</span>
+        </form>
+    </div>
+    <br>
+    <div class="chart-content">
+        <div class="column backlog">
+            <div><h3 class="column-title">Backlog</h3></div>
+        </div>
+        <div class="column inprogress">
+            <div><h3 class="column-title">In Progress</h3></div>
+        </div>
+        <div class="column review">
+            <h3 class="column-title">Review</h3>
+        </div>
+        <div class="column done">
+            <h3 class="column-title">Done</h3>
+        </div>
+        <div class="editstory">
+            <form action="#" th:action="@{/UpdateStory}" th:object="${issue}" method="post">
+                <div class="inputs">
+                    <input type="text" class="input input_2"  name="priority" placeholder="editstory.priority">
+                    <br>
+                    <textarea type="text" class="story-description" name="description" placeholder="editstory.description"></textarea>
+                    <br>
+                    <textarea type="text" class="story-details" name="details" placeholder="editstory.details"></textarea>
+                </div>
+                <div>
+                    <input type="submit" class="signUpBtn" name="submit" value="Create">
+                </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{main.js}"></script>
+</body>
+</html>

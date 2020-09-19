@@ -5,6 +5,7 @@ import com.project.projectmanager.models.User;
 import com.project.projectmanager.repository.ProjectRepository;
 import com.project.projectmanager.services.ProjectService;
 import com.project.projectmanager.services.TeamProjectService;
+import com.project.projectmanager.util.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,58 +50,8 @@ public class ProjectServiceImpl implements ProjectService {
     public void SaveProject(HashMap<String, String> formData, HttpSession session) {
         Project project = new Project();
         project.setName(formData.get("projectname"));
-        Date date = new Date();
-        String res = "";
-        String str = String.valueOf(date);
-        List<String> list = Arrays.asList(str.split(" "));
-        res += list.get(list.size()-1);
-        res += "-";
-        String month;
-        String val = list.get(1);
-        switch (val) {
-            case "Jan":
-                month = "01";
-                break;
-            case "Feb":
-                month = "02";
-                break;
-            case "Mar":
-                month = "03";
-                break;
-            case "Apr":
-                month = "04";
-                break;
-            case "May":
-                month = "05";
-                break;
-            case "Jun":
-                month = "06";
-                break;
-            case "Jul":
-                month = "07";
-                break;
-            case "Aug":
-                month = "08";
-                break;
-            case "Sep":
-                month = "09";
-                break;
-            case "Oct":
-                month = "10";
-                break;
-            case "Nov":
-                month = "11";
-                break;
-            case "Dec":
-                month = "12";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + val);
-        }
-        res += month;
-        res += "-";
-        res += list.get(2);
-        project.setDate(res);
+        Helper helper = new Helper();
+        project.setDate(helper.currentDate());
         User user = (User) session.getAttribute("user");
         project.setUserId(user.getId());
         projectRepository.save(project);

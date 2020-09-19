@@ -29,33 +29,140 @@
 </div>
 <div class="chartbody">
     <br>
-    <h2 th:text="${project.name}"></h2>
+<!--    <h2 th:text="${project.name}"></h2>-->
     <h3>Sprint Chart</h3>
     <div class="signUp">
         <button type="button" id="signup" class="signUpBtn">Create User Story</button>
     </div>
-    <div class="modal">
+    <div class="modal chartmodal">
         <form action="#" th:action="@{/createStory}" th:object="${issue}" method="post">
             <div class="inputs">
-                <input type="text" class="input input_1"  name="firstname" placeholder="First name">
-                <input type="text" class="input input_1"  name="lastname" placeholder="Last name">
+                <input type="text" class="input input_2"  name="priority" placeholder="Priority">
                 <br>
-                <input type="text" class="input input_2" name="email" placeholder="Email">
+                <textarea type="text" class="story-description" name="description" placeholder="Description"></textarea>
                 <br>
-                <input type="password" class="input input_2" name="password" placeholder="New password">
+                <textarea type="text" class="story-details" name="details" placeholder="Details"></textarea>
             </div>
             <div>
-                <input type="submit" class="signUpBtn" name="submit" value="Register">
+                <input type="submit" class="signUpBtn" name="submit" value="Create">
             </div>
             <span class="modal-close">X</span>
         </form>
     </div>
     <br>
     <div class="chart-content">
-        <div class="column">Backlog</div>
-        <div class="column">In Progress</div>
-        <div class="column">Review</div>
-        <div class="column">Done</div>
+        <div class="column backlog">
+            <div><h3 class="column-title">Backlog</h3></div>
+            <div class="column-body d1" th:each="story: ${backlog.stories}">
+                <div class="story">
+                    <h5 th:text="${story.date}"></h5>
+                    <div class="desc" th:text="${story.description}"></div>
+                    <div class="actions">
+                        <div class="moveoption">
+                            <form action="#" th:action="@{/updateStoryStatus}" th:object="${issue}" method="post">
+                                <div style="margin-top: 10px;">
+                                    <input id="female" name="status" type="radio" value="in progress">
+                                    <label class="female" for="female">In Progress</label>
+                                    <input id="male" name="status" type="radio" value="review">
+                                    <label class="male" for="male">Review</label>
+                                    <input id="male" name="status" type="radio" value="done">
+                                    <label class="male" for="male">Done</label>
+                                </div>
+                                <div>
+                                    <input type="text" hidden name="storyid" th:value="${story.id}">
+                                    <input type="submit" class="signUpBtn" name="submit" value="Move">
+                                </div>
+                            </form>
+                        </div>
+                        <button class="signUpBtn view" >View/Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column inprogress">
+            <div><h3 class="column-title">In Progress</h3></div>
+            <div class="column-body d2" th:each="story: ${progress.stories}">
+                <div class="story">
+                    <h5 th:text="${story.date}"></h5>
+                    <div class="desc" th:text="${story.description}"></div>
+                    <div class="actions">
+                        <div class="moveoption">
+                            <form action="#" th:action="@{/updateStoryStatus}" th:object="${issue}" method="post">
+                                <div style="margin-top: 10px;">
+                                    <input id="female" name="status" type="radio" value="backlog">
+                                    <label class="female" for="female">Backlog</label>
+                                    <input id="male" name="status" type="radio" value="review">
+                                    <label class="male" for="male">Review</label>
+                                    <input id="male" name="status" type="radio" value="done">
+                                    <label class="male" for="male">Done</label>
+                                </div>
+                                <div>
+                                    <input type="text" hidden name="storyid" th:value="${story.id}">
+                                    <input type="submit" class="signUpBtn" name="submit" value="Move">
+                                </div>
+                            </form>
+                        </div>
+                        <button class="signUpBtn view" >View/Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column review">
+            <h3 class="column-title">Review</h3>
+            <div class="column-body d3" th:each="story: ${review.stories}">
+                <div class="story">
+                    <h5 th:text="${story.date}"></h5>
+                    <div class="desc" th:text="${story.description}"></div>
+                    <div class="actions">
+                        <div class="moveoption">
+                            <form action="#" th:action="@{/updateStoryStatus}" th:object="${issue}" method="post">
+                                <div style="margin-top: 10px;">
+                                    <input id="female" name="status" type="radio" value="backlog">
+                                    <label class="female" for="female">Backlog</label>
+                                    <input id="male" name="status" type="radio" value="in progress">
+                                    <label class="male" for="male">In Progress</label>
+                                    <input id="male" name="status" type="radio" value="done">
+                                    <label class="male" for="male">Done</label>
+                                </div>
+                                <div>
+                                    <input type="text" hidden name="storyid" th:value="${story.id}">
+                                    <input type="submit" class="signUpBtn" name="submit" value="Move">
+                                </div>
+                            </form>
+                        </div>
+                        <button class="signUpBtn view" >View/Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column done">
+            <h3 class="column-title">Done</h3>
+            <div class="column-body d4" th:each="story: ${done.stories}">
+                <div class="story">
+                    <h5 th:text="${story.date}"></h5>
+                    <div class="desc" th:text="${story.description}"></div>
+                    <div class="actions">
+                        <div class="moveoption">
+                            <form action="#" th:action="@{/updateStoryStatus}" th:object="${issue}" method="post">
+                                <div style="margin-top: 10px;">
+                                    <input id="male" name="status" type="radio" value="backlog">
+                                    <label class="male" for="male">Backlog</label>
+                                    <input id="female" name="status" type="radio" value="in progress">
+                                    <label class="female" for="female">In Progress</label>
+                                    <input id="male" name="status" type="radio" value="review">
+                                    <label class="male" for="male">Review</label>
+                                </div>
+                                <div>
+                                    <input type="text" hidden name="storyid" th:value="${story.id}">
+                                    <input type="submit" class="signUpBtn" name="submit" value="Move">
+                                </div>
+                            </form>
+                        </div>
+                        <button class="signUpBtn view" >View/Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script th:src="@{main.js}"></script>

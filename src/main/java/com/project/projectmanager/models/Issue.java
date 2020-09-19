@@ -17,10 +17,9 @@ public class Issue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long projectId;
-    private long title;
     private String description;
     private String details;
-    private Integer priority;
+    private String priority;
     private String status;
     private String date;
 

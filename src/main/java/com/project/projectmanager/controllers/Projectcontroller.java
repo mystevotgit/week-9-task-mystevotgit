@@ -32,6 +32,9 @@ public class Projectcontroller {
 
     @GetMapping("/projects")
     public String viewProjects(@Valid User user, HttpSession session, Model model){
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
+        }
         model.addAttribute("user", session.getAttribute("user"));
 //        projectService.FindAllProjects(session);
 //        model.addAttribute("teamprojects", session.getAttribute("teamprojects"));
@@ -42,6 +45,9 @@ public class Projectcontroller {
 
     @PostMapping("/createproject")
     public String createProject(@RequestParam HashMap<String, String> formData, @Valid User user, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
+        }
         projectService.SaveProject(formData, session);
         return "redirect:/projects";
     }

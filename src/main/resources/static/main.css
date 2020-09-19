@@ -344,6 +344,7 @@ div .body {
     padding: 20px;
     visibility: hidden;
     transition: visibility 0s, opacity 0.5s;
+    z-index: 3;
 }
 
 .modal-active {
@@ -563,10 +564,64 @@ table tbody tr td:first-child::before {
 .chart-content {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto;
-    grid-template-areas: "backlog inprogress review done";
+    grid-template-rows: auto auto;
+    grid-template-areas:
+            "backlog inprogress review done"
+            "d1 d2 d3 d4";
     grid-column-gap: 10px;
     margin-top: 10px;
+    padding: 10px 50px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-color: #3b6e22;
+    padding: 10px 0px;
+    height: 40px;
+}
+
+.backlog {
+    grid_area: backlog;
+}
+.inprogress {
+    grid_area: inprogress;
+}
+.review {
+    grid_area: review;
+}
+.done {
+    grid_area: done;
+}
+
+.column-title {
+    display: block;
+    width: inherit;
+}
+
+.column-body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 20px;
+    align-items: center;
+    background-color: mintcream;
+    width: 100%;
+    column-gap: 20px;
+}
+ .d1 {
+     grid-area: d1;
+ }
+.d2 {
+    grid-area: d2;
+}
+.d3 {
+    grid-area: d3;
+}
+.d4 {
+    grid-area: d4;
 }
 
 .chart {
@@ -574,3 +629,50 @@ table tbody tr td:first-child::before {
     height: auto;
     background-color: white;
 }
+
+.chartmodal {
+    width: 50vw;
+    height: 50vh;
+}
+
+.story-description {
+    width: 80%;
+    height: 50px;
+}
+
+.story-details {
+    width: 80%;
+    height: 100px;
+}
+
+.story {
+    background-color: cadetblue;
+    color: white;
+    width: 93%;
+    min-height: 130px;
+    border-radius: 5px;
+    align-self: center;
+    padding: 5px;
+    margin: 10px 10px;
+}
+.desc {
+    color: black;
+    background-color: mintcream;
+    width: 98%;
+    margin: auto;
+    padding: 5px;
+    min-height: 70px;
+}
+
+/*.moveoption {*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: 33vh;*/
+/*    left: 35vw;*/
+/*    background-color: white;*/
+/*    box-shadow: 0px 0px 0px 100vw rgba(0,0,0,0.6);*/
+/*    padding: 20px;*/
+/*    visibility: hidden;*/
+/*    transition: visibility 0s, opacity 0.5s;*/
+/*    z-index: 3;*/
+/*}*/
