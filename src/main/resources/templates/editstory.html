@@ -22,14 +22,12 @@
                 <a th:href="@{/projects}">Projects</a>
                 <a th:href="@{/teams}">Teams</a>
                 <a th:href="@{/history}">History</a>
-                <a th:href="@{/about}">About</a>
             </li>
         </ul>
     </nav>
 </div>
 <div class="chartbody">
     <br>
-    <!--    <h2 th:text="${project.name}"></h2>-->
     <h3>Sprint Chart: Edit User Story</h3>
     <div class="signUp">
         <button type="button" id="signup" class="signUpBtn">Create User Story</button>
@@ -64,16 +62,23 @@
             <h3 class="column-title">Done</h3>
         </div>
         <div class="editstory">
-            <form action="#" th:action="@{/UpdateStory}" th:object="${issue}" method="post">
+            <form action="#" th:action="@{/chart}">
+<!--                <input type="text" hidden name="projectid" th:value="${project.id}">-->
+                <input type="submit" class="signUpBtn" name="submit" value="Back" >
+            </form>
+            <form action="#" th:action="@{/updateStory}" th:object="${issue}" method="post">
                 <div class="inputs">
-                    <input type="text" class="input input_2"  name="priority" placeholder="editstory.priority">
+                    <input type="text" class="input input_2"  name="priority" th:value="${editstory.priority}">
                     <br>
-                    <textarea type="text" class="story-description" name="description" placeholder="editstory.description"></textarea>
+                    <textarea type="text" class="story-description" name="description" th:text="${editstory.description}"></textarea>
                     <br>
-                    <textarea type="text" class="story-details" name="details" placeholder="editstory.details"></textarea>
+                    <textarea type="text" class="story-details" name="details" th:text="${editstory.details}"></textarea>
                 </div>
                 <div>
-                    <input type="submit" class="signUpBtn" name="submit" value="Create">
+                    <input type="text" hidden name="storyid" th:value="${editstory.id}">
+                    <input type="text" hidden name="storyprojectid" th:value="${editstory.projectId}">
+                    <input type="text" hidden name="storystatus" th:value="${editstory.status}">
+                    <input type="submit" class="signUpBtn" name="submit" value="Update">
                 </div>
         </div>
     </div>

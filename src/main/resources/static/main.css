@@ -203,7 +203,7 @@ select {
     background: -webkit-linear-gradient(#79bc64, #578843);
 }
 
-.signUpBtn:active {
+.signUpBtn:active, .delete:active {
     position: relative;
     top: 1px;
 }
@@ -664,15 +664,26 @@ table tbody tr td:first-child::before {
     min-height: 70px;
 }
 
-/*.moveoption {*/
-/*    display: block;*/
-/*    position: absolute;*/
-/*    top: 33vh;*/
-/*    left: 35vw;*/
-/*    background-color: white;*/
-/*    box-shadow: 0px 0px 0px 100vw rgba(0,0,0,0.6);*/
-/*    padding: 20px;*/
-/*    visibility: hidden;*/
-/*    transition: visibility 0s, opacity 0.5s;*/
-/*    z-index: 3;*/
-/*}*/
+.delete {
+    text-decoration:none;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color:#fff;
+    min-width: 90px;
+    height: 40px;
+    padding: 5px 10px;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    background: -webkit-linear-gradient(#ffbbcc, #ffccdd);
+    -webkit-box-shadow: inset 0 1px 1px #dd7799;
+    border: 1px solid;
+    border-color: #ff9e99 #ff9e99 #ff88aa;
+    margin-top: 10px;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    cursor:pointer;
+}
+
+.delete:hover {
+    background: -webkit-linear-gradient(#ffbbcc, #bb8899);
+}

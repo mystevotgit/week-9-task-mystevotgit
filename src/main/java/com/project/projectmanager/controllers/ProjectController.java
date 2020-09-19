@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 
 @Controller
-public class Projectcontroller {
+public class ProjectController {
 
     @Autowired
     UserService userService;

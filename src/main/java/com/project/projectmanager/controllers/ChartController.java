@@ -8,12 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class ChartController {
@@ -34,7 +32,7 @@ public class ChartController {
     }
 
     @PostMapping("/chart")
-    public String openProjectChart(@RequestParam HashMap<String, String> formData, @Valid User user, HttpSession session) {
+    public String openProjectChart(@RequestParam HashMap<String, String> formData, HttpSession session) {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         }
@@ -45,7 +43,7 @@ public class ChartController {
 
 
     @PostMapping("/createStory")
-    public String createStory(@RequestParam HashMap<String, String> formData, @Valid User user, HttpSession session) {
+    public String createStory(@RequestParam HashMap<String, String> formData, HttpSession session) {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         }
@@ -60,6 +58,46 @@ public class ChartController {
             return "redirect:/";
         }
         issueService.UpdateIssueStatus(formData);
+        return "redirect:/chart";
+    }
+
+
+    @PostMapping("/openStory")
+    public String openStory(@RequestParam HashMap<String, String> formData, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
+        }
+        long id = Long.parseLong(formData.get("storyid"));
+        issueService.FindIssueById(id, session);
+        return "redirect:/editStory";
+    }
+
+
+    @GetMapping("/editStory")
+    public String editStory(Model model, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("user", session.getAttribute("user"));
+        model.addAttribute("editstory", session.getAttribute("currentStory"));
+        return "editstory";
+    }
+
+    @PostMapping("/updateStory")
+    public String updateStory(@RequestParam HashMap<String, String> formData, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
+        }
+        issueService.UpdateStory(formData, session);
+        return "redirect:/chart";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam HashMap<String, String> formData, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
+        }
+        issueService.DeleteStory(formData, session);
         return "redirect:/chart";
     }
 }

@@ -72,12 +72,40 @@ public class IssueServiceImpl implements IssueService {
 
     @Override
     public void UpdateIssueStatus(HashMap<String, String> formData) {
-        System.out.println("hello.........");
         Issue issue = new Issue();
         issue.setId(Long.parseLong(formData.get("storyid")));
         Optional<Issue> story = issueRepository.findById(issue.getId());
         issue = story.get();
         issue.setStatus(formData.get("status"));
         issueRepository.save(issue);
+    }
+
+    @Override
+    public void FindIssueById(long id, HttpSession session) {
+        Issue issue;
+        Optional<Issue> story = issueRepository.findById(id);
+        issue = story.get();
+        session.setAttribute("currentStory", issue);
+    }
+
+    @Override
+    public void UpdateStory(HashMap<String, String> formData, HttpSession session) {
+        Long id = Long.valueOf(formData.get("storyid"));
+        Helper helper = new Helper();
+        Issue issue = new Issue();
+        issue.setId(id);
+        issue.setProjectId((Long) session.getAttribute("projectid"));
+        issue.setPriority(formData.get("priority"));
+        issue.setDescription(formData.get("description"));
+        issue.setDetails(formData.get("details"));
+        issue.setStatus(formData.get("storystatus"));
+        issue.setDate(helper.currentDate());
+        issueRepository.save(issue);
+    }
+
+    @Override
+    public void DeleteStory(HashMap<String, String> formData, HttpSession session) {
+        Long id = Long.valueOf(formData.get("storyid"));
+        issueRepository.deleteById(id);
     }
 }

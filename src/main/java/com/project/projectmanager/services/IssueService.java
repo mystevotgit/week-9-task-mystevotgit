@@ -14,4 +14,10 @@ public interface IssueService {
     void SaveStory(HashMap<String, String> formData, HttpSession session);
 
     void UpdateIssueStatus(HashMap<String, String> formData);
+
+    void FindIssueById(long id, HttpSession session);
+
+    void UpdateStory(HashMap<String, String> formData, HttpSession session);
+
+    void DeleteStory(HashMap<String, String> formData, HttpSession session);
 }

@@ -22,7 +22,6 @@
                 <a th:href="@{/projects}">Projects</a>
                 <a th:href="@{/teams}">Teams</a>
                 <a th:href="@{/history}">History</a>
-                <a th:href="@{/about}">About</a>
             </li>
         </ul>
     </nav>
@@ -74,7 +73,11 @@
                                 </div>
                             </form>
                         </div>
-                        <button class="signUpBtn view" >View/Edit</button>
+                        <form action="#" th:action="@{/openStory}" method="post">
+                            <input type="text" hidden name="storyid" th:value="${story.id}">
+                            <button class="signUpBtn" >View/Edit</button>
+                            <button class="delete" th:formaction="@{/delete}">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -102,7 +105,11 @@
                                 </div>
                             </form>
                         </div>
-                        <button class="signUpBtn view" >View/Edit</button>
+                        <form action="#" th:action="@{/openStory}" method="post">
+                            <input type="text" hidden name="storyid" th:value="${story.id}">
+                            <button class="signUpBtn" >View/Edit</button>
+                            <button class="delete" th:formaction="@{/delete}">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -130,7 +137,11 @@
                                 </div>
                             </form>
                         </div>
-                        <button class="signUpBtn view" >View/Edit</button>
+                        <form action="#" th:action="@{/openStory}" method="post">
+                            <input type="text" hidden name="storyid" th:value="${story.id}">
+                            <button class="signUpBtn" >View/Edit</button>
+                            <button class="delete" th:formaction="@{/delete}">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -158,7 +169,11 @@
                                 </div>
                             </form>
                         </div>
-                        <button class="signUpBtn view" >View/Edit</button>
+                        <form action="#" th:action="@{/openStory}" method="post">
+                            <input type="text" hidden name="storyid" th:value="${story.id}">
+                            <button class="signUpBtn" >View/Edit</button>
+                            <button class="delete" th:formaction="@{/delete}">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
