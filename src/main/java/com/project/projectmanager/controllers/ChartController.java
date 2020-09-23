@@ -1,6 +1,7 @@
 package com.project.projectmanager.controllers;
 
 import com.project.projectmanager.models.User;
+import com.project.projectmanager.services.HistoryService;
 import com.project.projectmanager.services.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class ChartController {
 
     @Autowired
     IssueService issueService;
+
+    @Autowired
+    HistoryService historyService;
 
 
     @GetMapping("/chart")
@@ -48,6 +52,7 @@ public class ChartController {
             return "redirect:/";
         }
         issueService.SaveStory(formData, session);
+        historyService.SaveCreateStory(formData, session);
         return "redirect:/chart";
     }
 
@@ -58,6 +63,7 @@ public class ChartController {
             return "redirect:/";
         }
         issueService.UpdateIssueStatus(formData);
+        historyService.SaveStatusUpdate(formData);
         return "redirect:/chart";
     }
 
@@ -89,6 +95,7 @@ public class ChartController {
             return "redirect:/";
         }
         issueService.UpdateStory(formData, session);
+        historyService.SaveStoryUpdate(formData, session);
         return "redirect:/chart";
     }
 
@@ -97,6 +104,7 @@ public class ChartController {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         }
+        historyService.SaveDeletedStory(formData, session);
         issueService.DeleteStory(formData, session);
         return "redirect:/chart";
     }

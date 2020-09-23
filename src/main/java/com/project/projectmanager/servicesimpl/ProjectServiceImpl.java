@@ -55,5 +55,6 @@ public class ProjectServiceImpl implements ProjectService {
         User user = (User) session.getAttribute("user");
         project.setUserId(user.getId());
         projectRepository.save(project);
+
     }
 }

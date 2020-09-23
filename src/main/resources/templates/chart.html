@@ -20,7 +20,7 @@
         <ul>
             <li>
                 <a th:href="@{/projects}">Projects</a>
-                <a th:href="@{/teams}">Teams</a>
+                <a th:href="@{/team}">Team</a>
                 <a th:href="@{/history}">History</a>
             </li>
         </ul>
@@ -60,7 +60,7 @@
                         <div class="moveoption">
                             <form action="#" th:action="@{/updateStoryStatus}" th:object="${issue}" method="post">
                                 <div style="margin-top: 10px;">
-                                    <input id="female" name="status" type="radio" value="in progress">
+                                    <input id="female" checked name="status" type="radio" value="in progress">
                                     <label class="female" for="female">In Progress</label>
                                     <input id="male" name="status" type="radio" value="review">
                                     <label class="male" for="male">Review</label>
@@ -94,7 +94,7 @@
                                 <div style="margin-top: 10px;">
                                     <input id="female" name="status" type="radio" value="backlog">
                                     <label class="female" for="female">Backlog</label>
-                                    <input id="male" name="status" type="radio" value="review">
+                                    <input id="male" checked name="status" type="radio" value="review">
                                     <label class="male" for="male">Review</label>
                                     <input id="male" name="status" type="radio" value="done">
                                     <label class="male" for="male">Done</label>
@@ -128,7 +128,7 @@
                                     <label class="female" for="female">Backlog</label>
                                     <input id="male" name="status" type="radio" value="in progress">
                                     <label class="male" for="male">In Progress</label>
-                                    <input id="male" name="status" type="radio" value="done">
+                                    <input id="male" checked name="status" type="radio" value="done">
                                     <label class="male" for="male">Done</label>
                                 </div>
                                 <div>
@@ -156,7 +156,7 @@
                         <div class="moveoption">
                             <form action="#" th:action="@{/updateStoryStatus}" th:object="${issue}" method="post">
                                 <div style="margin-top: 10px;">
-                                    <input id="male" name="status" type="radio" value="backlog">
+                                    <input id="male" checked name="status" type="radio" value="backlog">
                                     <label class="male" for="male">Backlog</label>
                                     <input id="female" name="status" type="radio" value="in progress">
                                     <label class="female" for="female">In Progress</label>

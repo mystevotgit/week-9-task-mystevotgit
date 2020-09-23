@@ -10,4 +10,6 @@ import java.util.HashMap;
 public interface UserService {
     void SaveUserData(HashMap<String, String> formData, User user);
     void FindUserData(HashMap<String, String> email, HttpSession session);
+
+    void FindUsers(HttpSession session);
 }

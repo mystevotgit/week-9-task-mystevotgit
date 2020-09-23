@@ -1,5 +1,4 @@
 const signupbtn = document.getElementById("signup")
-const movebtn = document.querySelector(".move")
 var activatemodal = document.querySelector(".modal")
 var modalclose = document.querySelector(".modal-close")
 

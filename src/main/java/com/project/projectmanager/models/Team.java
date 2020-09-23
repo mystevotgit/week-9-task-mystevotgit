@@ -16,12 +16,10 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    private String date;
-
-//    @OneToMany
-//    private List<TeamMember> members = new ArrayList<>();
-
-    @OneToOne
-    private TeamProject projects = new TeamProject();
+    private long userid;
+    private long projectId;
+    private String firstname;
+    private String lastname;
+    private String gender;
+    private String role;
 }

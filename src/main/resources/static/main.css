@@ -687,3 +687,8 @@ table tbody tr td:first-child::before {
 .delete:hover {
     background: -webkit-linear-gradient(#ffbbcc, #bb8899);
 }
+
+.teammembers {
+    top: 27vh;
+    left: 17vw;
+}

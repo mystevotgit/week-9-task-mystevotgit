@@ -20,16 +20,83 @@
         <ul>
             <li>
                 <a th:href="@{/projects}">Projects</a>
-                <a th:href="@{/teams}">Teams</a>
+                <a th:href="@{/team}">Team</a>
                 <a th:href="@{/history}">History</a>
             </li>
         </ul>
     </nav>
 </div>
-<div class="chartbody">
-    <br>
-    <h3>Teams</h3>
 
+<div class="main-content">
+    <section id="projectsection">
+        <h3>Team Members</h3>
+        <div class="signUp">
+            <button type="button" id="signup" class="signUpBtn">Add A Team Member</button>
+        </div>
+
+        <div class="modal teammembers">
+            <div class="scroll">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="employee: ${employees}">
+                    <tr>
+                        <td data-column="SN"></td>
+                        <td data-column="First Name" th:text="${employee.firstname}"></td>
+                        <td data-column="Last Name" th:text="${employee.lastname}"></td>
+                        <td data-column="Gender" th:text="${employee.gender}"></td>
+                        <td data-column="Role" th:text="${employee.role}"></td>
+                        <td data-column="Action">
+                            <form action="#" th:action="@{/addteammember}" method="post">
+                                <input type="text" hidden name="employeeid" th:value="${employee.id}">
+                                <input type="submit" class="signUpBtn" name="submit" value="Add" >
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <span class="modal-close">X</span>
+            </div>
+        </div>
+
+        <div class="projectbody">
+            <table>
+                <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody th:each="member: ${teammembers}">
+                <tr>
+                    <td data-column="SN"></td>
+                    <td data-column="First Name" th:text="${member.firstname}"></td>
+                    <td data-column="Last Name" th:text="${member.lastname}"></td>
+                    <td data-column="Gender" th:text="${member.gender}"></td>
+                    <td data-column="Role" th:text="${member.role}"></td>
+                    <td data-column="Action">
+                        <form action="#" th:action="@{/removeteammember}" method="post">
+                            <input type="text" hidden name="memberid" th:value="${member.id}">
+                            <input type="submit" class="signUpBtn" name="submit" value="Remove" >
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </div>
 <script th:src="@{main.js}"></script>
 </body>

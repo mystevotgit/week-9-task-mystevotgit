@@ -20,7 +20,7 @@
         <ul>
             <li>
                 <a th:href="@{/projects}">Projects</a>
-                <a th:href="@{/teams}">Teams</a>
+                <a th:href="@{/team}">Team</a>
                 <a th:href="@{/history}">History</a>
             </li>
         </ul>
@@ -29,7 +29,28 @@
 <div class="chartbody">
     <br>
     <h3>Project History</h3>
-
+    <div class="historybody">
+        <table>
+            <thead>
+            <tr>
+                <th>SN</th>
+                <th>Description</th>
+                <th>Details</th>
+                <th>Event</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody th:each="story: ${history}">
+            <tr>
+                <td data-column="SN"></td>
+                <td data-column="Description" th:text="${story.description}"></td>
+                <td data-column="Details" th:text="${story.details}"></td>
+                <td data-column="Event" th:text="${story.event}"></td>
+                <td data-column="Date" th:text="${story.date}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <script th:src="@{main.js}"></script>
 </body>
